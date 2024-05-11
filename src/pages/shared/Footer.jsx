@@ -36,7 +36,7 @@ const Footer = () => {
 				</div>
 				
 			</a>
-            <p className=" text-sm w-1/2 text-justify ">Discover amazing destinations on our travel website footer. Let us be your compass to incredible adventures and unforgettable experiences around the globe.</p>
+            <p className=" text-sm w-1/2 text-justify ">Discover the epitome of culinary hygiene with our carefully crafted menu, ensuring your dining experience is both delicious and safe.</p>
 		</div>
 		<div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
 			<div className="space-y-3">
@@ -61,7 +61,7 @@ const Footer = () => {
 				<h3 className="uppercase ">Quick Link</h3>
 				<ul className="space-y-1">
 				<Link to="/all-tourist-spot"><li>
-						<a rel="noopener noreferrer" href="#">Add Tourists Spot </a>
+						<a rel="noopener noreferrer" href="#">Available Foods</a>
 					</li></Link>
 				<Link to="/contact"><li>
 						<a rel="noopener noreferrer" href="#">Contact</a>
@@ -91,7 +91,7 @@ const Footer = () => {
 			</div>
 		</div>
 	</div>
-	<div className="py-6 text-sm text-center text-gray-400">© Travel Trek All rights reserved.</div>
+	<div className="py-6 text-sm text-center text-gray-400">© H-Food All rights reserved.</div>
 </footer>
         </div>
     );

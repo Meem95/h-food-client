@@ -2,10 +2,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import { FaStar } from "react-icons/fa";
+
 import r1 from "../../assets/images/r1.png";
 import r2 from "../../assets/images/r2.png";
-import r3 from "../../assets/images/r3.png";
+
 const Review = () => {
   return (
     <div className="max-w-7xl mx-auto ">

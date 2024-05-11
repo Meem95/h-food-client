@@ -5,12 +5,12 @@ import Root from "../layouts/Root";
 // import ErrorPage from "../pages/ErrorPage";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import AddTouristSpot from "../pages/TouristSpot/AddTouristSpot";
-import PrivateRoute from "./PrivateRoute";
-import AllTouristSpots from "../pages/AllTouristSpots";
-import TouristSpotDetails from "../pages/TouristSpot/TouristSpotDetails";
-import MyLists from "../pages/MyList/MyLists";
-import UpdateTouristSpot from "../pages/UpdateTouristSpot";
+// import AddTouristSpot from "../pages/TouristSpot/AddTouristSpot";
+// import PrivateRoute from "./PrivateRoute";
+// import AllTouristSpots from "../pages/AllTouristSpots";
+// import TouristSpotDetails from "../pages/TouristSpot/TouristSpotDetails";
+// import MyLists from "../pages/MyList/MyLists";
+// import UpdateTouristSpot from "../pages/UpdateTouristSpot";
 import NotFoundPage from "../pages/NotFoundPage";
 import CountryAll from "../pages/CountryAll";
 
@@ -35,33 +35,33 @@ const router = createBrowserRouter([
                
             },
             
-            {
-                path: '/add-tourist-spot',
-                element:<PrivateRoute> <AddTouristSpot></AddTouristSpot></PrivateRoute>
-            },
-            {
-                path: '/tourist-spot-details/:id',
-                element:<PrivateRoute> <TouristSpotDetails></TouristSpotDetails></PrivateRoute>,
-                loader:({params})=>fetch(`https://b9a10-tour-server.vercel.app/location/${params.id}`)
-            },
+            // {
+            //     path: '/add-tourist-spot',
+            //     element:<PrivateRoute> <AddTouristSpot></AddTouristSpot></PrivateRoute>
+            // },
+            // {
+            //     path: '/tourist-spot-details/:id',
+            //     element:<PrivateRoute> <TouristSpotDetails></TouristSpotDetails></PrivateRoute>,
+            //     loader:({params})=>fetch(`https://b9a10-tour-server.vercel.app/location/${params.id}`)
+            // },
             
-            {
-                path: '/my-list/',
-                element:<PrivateRoute> <MyLists></MyLists></PrivateRoute>,
-                loader:()=>fetch('https://b9a10-tour-server.vercel.app/location')
+            // {
+            //     path: '/my-list/',
+            //     element:<PrivateRoute> <MyLists></MyLists></PrivateRoute>,
+            //     loader:()=>fetch('https://b9a10-tour-server.vercel.app/location')
 
-            },
-            {
-                path: 'update-my-list/:id', 
-                element:<PrivateRoute><UpdateTouristSpot></UpdateTouristSpot></PrivateRoute>, 
-                loader: ({params}) => fetch(`https://b9a10-tour-server.vercel.app/location/${params.id}`)
-              },
+            // },
+            // {
+            //     path: 'update-my-list/:id', 
+            //     element:<PrivateRoute><UpdateTouristSpot></UpdateTouristSpot></PrivateRoute>, 
+            //     loader: ({params}) => fetch(`https://b9a10-tour-server.vercel.app/location/${params.id}`)
+            //   },
             
-            {
-                path: '/all-tourist-spot',
-                element: <AllTouristSpots></AllTouristSpots>,
-                loader:()=>fetch('https://b9a10-tour-server.vercel.app/location')
-            },
+            // {
+            //     path: '/all-tourist-spot',
+            //     element: <AllTouristSpots></AllTouristSpots>,
+            //     loader:()=>fetch('https://b9a10-tour-server.vercel.app/location')
+            // },
             {
                 path: '/contact',
                 element: <Contact></Contact>

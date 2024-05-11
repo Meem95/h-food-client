@@ -33,7 +33,7 @@ const Home = () => {
           <div className=" p-6 mx-auto space-y-5">
             <div className="my-6 animate__animated animate__bounce">
               <h2 className="text-5xl text-center font-bold ">
-                Tourists Spots
+                Featured Food
               </h2>
             </div>
             <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
@@ -48,6 +48,7 @@ const Home = () => {
         </section>
         </Fade>
       </div>
+     
      
       <Fade  direction="left" duration="2000">
       <div>

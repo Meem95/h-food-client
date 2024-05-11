@@ -1,74 +1,84 @@
-import AOS from 'aos';
-import 'aos/dist/aos.css'; 
+import AOS from "aos";
+import "aos/dist/aos.css";
 AOS.init();
 import { TiWeatherPartlySunny } from "react-icons/ti";
 import { MdSupervisedUserCircle } from "react-icons/md";
-import {  CiLocationOn } from "react-icons/ci";
+import { CiLocationOn } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 const TouristSpot = ({ cards }) => {
-    const { tourists_spot_name, country_Name, average_cost, totalVisitorsPerYear, location, seasonality,image, travel_time, _id,short_description} = cards;
-    const truncateString = (str, numWords) => {
-        const words = str.split(' ');
-        if (words.length > numWords) {
-            return words.slice(0, numWords).join(' ') + '...';
-        } else {
-            return str;
-        }
-    
-    };
+  const {
+    tourists_spot_name,
+    country_Name,
+    average_cost,
+    totalVisitorsPerYear,
+    location,
+    seasonality,
+    image,
+    travel_time,
+    _id,
+    short_description,
+  } = cards;
+  const truncateString = (str, numWords) => {
+    const words = str.split(" ");
+    if (words.length > numWords) {
+      return words.slice(0, numWords).join(" ") + "...";
+    } else {
+      return str;
+    }
+  };
 
-    return (
-        <div>
-              <div className="   p-4" data-aos="zoom-in" data-aos-duration="1500">
-                <div className="card bg-base-100 shadow-2xl relative p-4">
-                <div className="flex  space-x-3 my-2"> <div className="p-2 bg-[#FF8900] rounded-full text-white font-extrabold text-lg"><CiLocationOn /> </div><span className="text-lg font-medium"> {truncateString(location,3)} </span></div>
-                    <div className="relative">
-                        <figure className="">
-                            <img className="rounded-md lg:h-60  md:h-56" src={image} alt={country_Name} />
-                        </figure>
-                    </div>
-                   
-                    <div className="">
-                        <h2 className="card-title text-black my-4">
-                        {truncateString(tourists_spot_name,4)}
-                            
-                            <div className="badge text-white p-3 bg-[#FF8900]">{country_Name}</div>
-                        </h2>
-                    
-                        <div className="card-actions justify-evenly bg-[#dfe0e6] p-1 rounded-xl">
-                            <div className="text-black flex p-1 font-medium"><MdSupervisedUserCircle />{truncateString(totalVisitorsPerYear,3)}  </div>
-                            <div className="text-black flex p-1 font-medium">{truncateString(travel_time,2)}  </div>
-                            <div className="text-black flex p-1 font-medium"> <TiWeatherPartlySunny />{truncateString(seasonality,2)}  </div>
-                        </div>
-                        <div className='my-4'>
-                            <p>
-                                {truncateString(short_description,11)}
-                            </p>
-                        </div>
-                        <div className="flex justify-between my-4">
-                        <div><p> <span className=" font-bold text-2xl">${average_cost}</span>/ Person</p></div>
-                            <Link to={`/tourist-spot-details/${_id}`}>
-                                <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-md hover:bg-[#ff9811]  bg-[#FF8900] text-white font-bold">View Details</button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <div>
+      <div className="bg-white rounded-xl overflow-hidden shadow-2xl ">
+        <img
+          className="w-full h-full "
+          src="https://i.ibb.co/3RDnG60/cornsilog-short-term-corned-beef-600nw-1869145681.jpg"
+          alt="Home in Countryside"
+        />
+        <div className="p-6 space-y-4">
+          <div className="flex space-x-9">
+            <div className="ml-2  text-teal-800 text-xs uppercase font-semibold tracking-wide">
+              01/02/2024
             </div>
+
+            <div className="ml-2  text-teal-800 text-xs uppercase font-semibold tracking-wide">
+              2 person
+            </div>
+            <div className="ml-2  text-teal-800 text-xs uppercase font-semibold tracking-wide">
+              121 arriele drive
+            </div>
+          </div>
+          <h4 className="mt-2 font-semibold text-lg leading-tight truncate">
+            Beautiful Home in the countryside
+          </h4>
+          <div className="mt-2">
+            <span>Biryani is a popular South Asian rice dish characterized by its aromatic flavors and rich spices. Typically made with basmati rice, meat .   </span>
+          </div>
+          <div className="mt-2  ">
+            <img
+          className="w-[50px] rounded-full "
+          src="https://i.ibb.co/3RDnG60/cornsilog-short-term-corned-beef-600nw-1869145681.jpg"
+          alt="Home in Countryside"
+        />
+          <span className="ml-2 mt-2 text-gray-600 text-sm">Fatema tuz Zohora</span>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 TouristSpot.propTypes = {
-    cards: PropTypes.shape({
-        tourists_spot_name: PropTypes.string,
-        country_Name: PropTypes.string,
-        average_cost: PropTypes.number,
-        totalVisitorsPerYear: PropTypes.number,
-        location: PropTypes.string,
-        seasonality: PropTypes.string,
-        image: PropTypes.string,
-        travel_time: PropTypes.string,
-        _id: PropTypes.string
-    })
+  cards: PropTypes.shape({
+    tourists_spot_name: PropTypes.string,
+    country_Name: PropTypes.string,
+    average_cost: PropTypes.number,
+    totalVisitorsPerYear: PropTypes.number,
+    location: PropTypes.string,
+    seasonality: PropTypes.string,
+    image: PropTypes.string,
+    travel_time: PropTypes.string,
+    _id: PropTypes.string,
+  }),
 };
 export default TouristSpot;
