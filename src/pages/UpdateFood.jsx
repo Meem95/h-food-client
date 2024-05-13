@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-const UpdateTouristSpot = () => {
+const UpdateFood = () => {
   
   const updateMyLocation = useLoaderData();
   const {
@@ -251,4 +251,4 @@ const UpdateTouristSpot = () => {
   );
 };
 
-export default UpdateTouristSpot;
+export default UpdateFood;

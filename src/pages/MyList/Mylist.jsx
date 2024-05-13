@@ -16,7 +16,7 @@ const Mylist = ({listData, item, list, index }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://b9a10-tour-server.vercel.app/location/${_id}`, {
+                fetch(`http://localhost:5000/food/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

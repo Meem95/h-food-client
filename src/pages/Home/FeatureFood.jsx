@@ -52,7 +52,9 @@ const FeatureFood = ({ cards }) => {
             />
             <span className=" mt-2 text-gray-600 text-sm">{name}</span>
           </div>
-          <div className="text-center">   <Link to={`/food-details/${_id}`}><button className="text-lime-600 text-center">Details </button></Link> </div>
+          <div className="text-center ">   <Link to={`/food-details/${_id}`}><button className="text-lime-600 text-center inline-flex items-center">Details  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4  ml-2">
+                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
+              </svg></button></Link> </div>
 
         </div>
       </div>

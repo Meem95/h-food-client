@@ -10,7 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import AllAvailableFood from "../pages/AllAvailableFood";
 import FoodDetails from "../pages/Food/FoodDetails";
 import MyLists from "../pages/MyList/MyLists";
-// import UpdateTouristSpot from "../pages/UpdateTouristSpot";
+import UpdateFood from "../pages/UpdateFood";
 // import NotFoundPage from "../pages/NotFoundPage";
 import CountryAll from "../pages/CountryAll";
 
@@ -50,11 +50,11 @@ const router = createBrowserRouter([
                 loader:()=>fetch('http://localhost:5000/food')
 
             },
-            // {
-            //     path: 'update-my-list/:id', 
-            //     element:<PrivateRoute><UpdateTouristSpot></UpdateTouristSpot></PrivateRoute>, 
-            //     loader: ({params}) => fetch(`https://b9a10-tour-server.vercel.app/location/${params.id}`)
-            //   },
+            {
+                path: 'update-my-list/:id', 
+                element:<PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>, 
+                loader: ({params}) => fetch(`http://localhost:5000/food/${params.id}`)
+              },
             
             {
                 path: '/available-food',
