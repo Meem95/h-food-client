@@ -9,10 +9,10 @@ const Root = () => {
         <Navbar></Navbar>
       
       </div>
-      <div className="min-h-[calc(100vh-350px)]">
+      <div className="min-h-[calc(100vh-350px)] font-poppins ">
         <Outlet />
       </div>
-      <div className="max-w-full dark:bg-gray-900  mx-auto font-poppins shadow-2xl">
+      <div className="max-w-full bg-[#FFFFE0] top-0 z-10 backdrop-blur-xl  mx-auto font-poppins shadow-5xl">
       <Footer></Footer>
       </div>
       

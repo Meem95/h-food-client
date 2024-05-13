@@ -5,8 +5,8 @@ import Root from "../layouts/Root";
 // import ErrorPage from "../pages/ErrorPage";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-// import AddTouristSpot from "../pages/TouristSpot/AddTouristSpot";
-// import PrivateRoute from "./PrivateRoute";
+ import AddFood from "../pages/Food/AddFood";
+import PrivateRoute from "./PrivateRoute";
 // import AllTouristSpots from "../pages/AllTouristSpots";
 // import TouristSpotDetails from "../pages/TouristSpot/TouristSpotDetails";
 // import MyLists from "../pages/MyList/MyLists";
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
               //  loader:()=>fetch('http://localhost:5000/location'),
               loader: async () => {
                 const [locationData, otherData] = await Promise.all([
-                    fetch('https://b9a10-tour-server.vercel.app/location').then(res => res.json()),
+                    fetch('http://localhost:5000/food').then(res => res.json()),
                     fetch('https://b9a10-tour-server.vercel.app/country').then(res => res.json())
                 ]);
                 return { locationData, otherData };
@@ -35,10 +35,10 @@ const router = createBrowserRouter([
                
             },
             
-            // {
-            //     path: '/add-tourist-spot',
-            //     element:<PrivateRoute> <AddTouristSpot></AddTouristSpot></PrivateRoute>
-            // },
+            {
+                path: '/add-food',
+                element:<PrivateRoute> <AddFood></AddFood></PrivateRoute>
+            },
             // {
             //     path: '/tourist-spot-details/:id',
             //     element:<PrivateRoute> <TouristSpotDetails></TouristSpotDetails></PrivateRoute>,

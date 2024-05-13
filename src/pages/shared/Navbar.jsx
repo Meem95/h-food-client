@@ -100,7 +100,7 @@ const Navbar = () => {
            Available Foods
           </NavLink> 
           <NavLink
-                to={'/my-list'}
+                to={'/add-food'}
                 className={({ isActive }) =>
                   isActive
                     ? 'text-[#2f400e] font-bold btn-outline btn-[#2f400e] btn '
@@ -169,7 +169,7 @@ const Navbar = () => {
               <a>Available Foods</a>
             </li>
             </NavLink>
-           <NavLink to={'/all-tourist-spot'} className={({ isActive }) =>
+           <NavLink to={'/add-food'} className={({ isActive }) =>
                   isActive
                     ? 'text-lime-600 font-bold '
                     : 'font-bold text-[#2f400e] '}>
