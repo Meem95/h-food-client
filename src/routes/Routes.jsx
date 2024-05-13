@@ -7,11 +7,11 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
  import AddFood from "../pages/Food/AddFood";
 import PrivateRoute from "./PrivateRoute";
-// import AllTouristSpots from "../pages/AllTouristSpots";
-// import TouristSpotDetails from "../pages/TouristSpot/TouristSpotDetails";
-// import MyLists from "../pages/MyList/MyLists";
+import AllAvailableFood from "../pages/AllAvailableFood";
+import FoodDetails from "../pages/Food/FoodDetails";
+import MyLists from "../pages/MyList/MyLists";
 // import UpdateTouristSpot from "../pages/UpdateTouristSpot";
-import NotFoundPage from "../pages/NotFoundPage";
+// import NotFoundPage from "../pages/NotFoundPage";
 import CountryAll from "../pages/CountryAll";
 
 
@@ -19,12 +19,11 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Root></Root>, 
-        errorElement: <NotFoundPage />,
+        // errorElement: <NotFoundPage />,
         children: [
             {
                 path: '/',
                 element: <Home></Home>, 
-              //  loader:()=>fetch('http://localhost:5000/location'),
               loader: async () => {
                 const [locationData, otherData] = await Promise.all([
                     fetch('http://localhost:5000/food').then(res => res.json()),
@@ -39,29 +38,29 @@ const router = createBrowserRouter([
                 path: '/add-food',
                 element:<PrivateRoute> <AddFood></AddFood></PrivateRoute>
             },
-            // {
-            //     path: '/tourist-spot-details/:id',
-            //     element:<PrivateRoute> <TouristSpotDetails></TouristSpotDetails></PrivateRoute>,
-            //     loader:({params})=>fetch(`https://b9a10-tour-server.vercel.app/location/${params.id}`)
-            // },
+            {
+                path: '/food-details/:id',
+                element:<PrivateRoute> <FoodDetails></FoodDetails></PrivateRoute>,
+                loader:({params})=>fetch(`http://localhost:5000/food/${params.id}`)
+            },
             
-            // {
-            //     path: '/my-list/',
-            //     element:<PrivateRoute> <MyLists></MyLists></PrivateRoute>,
-            //     loader:()=>fetch('https://b9a10-tour-server.vercel.app/location')
+            {
+                path: '/my-list/',
+                element:<PrivateRoute> <MyLists></MyLists></PrivateRoute>,
+                loader:()=>fetch('http://localhost:5000/food')
 
-            // },
+            },
             // {
             //     path: 'update-my-list/:id', 
             //     element:<PrivateRoute><UpdateTouristSpot></UpdateTouristSpot></PrivateRoute>, 
             //     loader: ({params}) => fetch(`https://b9a10-tour-server.vercel.app/location/${params.id}`)
             //   },
             
-            // {
-            //     path: '/all-tourist-spot',
-            //     element: <AllTouristSpots></AllTouristSpots>,
-            //     loader:()=>fetch('https://b9a10-tour-server.vercel.app/location')
-            // },
+            {
+                path: '/available-food',
+                element: <AllAvailableFood></AllAvailableFood>,
+                loader:()=>fetch('http://localhost:5000/food')
+            },
             {
                 path: '/contact',
                 element: <Contact></Contact>
@@ -74,13 +73,7 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <Register></Register>
             },
-           
-            {
-             path: '/country-name/:id',
-              element: <CountryAll></CountryAll>,
-              loader:({params}) => 
-              fetch(`https://b9a10-tour-server.vercel.app/location-by-country?country=${encodeURIComponent(params.id)}`)
-            }
+          
         ]
     }   
 

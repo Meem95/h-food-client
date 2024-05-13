@@ -17,7 +17,7 @@ const MyLists = () => {
   const [item, setItem] = useState([]);
   // console.log(user);
   useEffect(() => {
-    fetch(`https://b9a10-tour-server.vercel.app/myLocation/${user?.email}`)
+    fetch(`http://localhost:5000/myFood/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setItem(data);
@@ -28,7 +28,7 @@ const MyLists = () => {
     
     <div className="min-h-screen max-w-7xl mx-auto text-black my-10 shadow-2xl p-5">
 <Helmet>
-    <title> Travel Trek | My list</title>
+    <title>  H-food  | My list</title>
   </Helmet>
       <div className="overflow-x-auto">
       {
@@ -38,10 +38,10 @@ const MyLists = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Name</th>
-              <th>Country</th>
-              <th> Average Cost</th>
-              <th> Seasonality</th>
+              <th>Food Name</th>
+              <th>Location</th>
+              <th>Expired Date</th>
+              <th> Status</th>
               <th> Action</th>
             </tr>
           </thead>

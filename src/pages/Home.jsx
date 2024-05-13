@@ -3,7 +3,7 @@ import Slider from "./Home/Slider";
 import Gallery from "./Home/Gallery";
 import Review from "./Home/Review";
 import FeatureFood from "./Home/FeatureFood";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 
 const Home = () => {
@@ -42,6 +42,7 @@ const Home = () => {
               </div>
             </div>
             <div className="text-center">
+              <Link ></Link>
                   <button className="btn btn-success btn-md">View All</button>
                 </div>
           </section>

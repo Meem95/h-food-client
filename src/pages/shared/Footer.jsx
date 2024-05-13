@@ -44,7 +44,7 @@ const Footer = () => {
 				<ul className="space-y-1">
 				{title.map((location) => (
 					
-					<li key={location._id} ><Link to={`/tourist-spot-details/${location._id}`}>{truncateString(location.tourists_spot_name, 2)}</Link> </li>
+					<li key={location._id} ><Link to={`/food-details/${location._id}`}>{truncateString(location.tourists_spot_name, 2)}</Link> </li>
                                 ))}
 				</ul>
 			</div>

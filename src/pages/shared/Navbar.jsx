@@ -90,7 +90,7 @@ const Navbar = () => {
                 Home
               </NavLink>
               
-                <NavLink to={'/add-tourist-spot'} 
+                <NavLink to={'/available-food'} 
                 className={({ isActive }) =>
                   isActive
                   ? ' font-bold mt-4 '
@@ -161,7 +161,7 @@ const Navbar = () => {
               <a>Home</a>
             </li>
             </NavLink>
-           <NavLink to={'/all-tourist-spot'} className={({ isActive }) =>
+           <NavLink to={'/available-food'} className={({ isActive }) =>
                   isActive
                     ? 'text-lime-600 font-bold '
                     : 'font-bold text-[#2f400e] '}>
@@ -178,7 +178,7 @@ const Navbar = () => {
             </li>
             </NavLink>
             
-            <NavLink to={'/add-tourist-spot'} className={({ isActive }) =>
+            <NavLink to={'/my-list'} className={({ isActive }) =>
                   isActive
                     ? 'text-lime-600 font-bold '
                     : 'font-bold text-[#2f400e] '}>

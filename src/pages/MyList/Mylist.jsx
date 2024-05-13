@@ -48,16 +48,18 @@ const Mylist = ({listData, item, list, index }) => {
                         </div>
                     </div>
                     <div>
-                        <div className="font-bold">{list.tourists_spot_name}</div>
+                        <div className="font-bold">{list.food_name}</div>
                     </div>
                 </div>
             </td>
-            <td>{list.country_Name}</td>
-            <td>$ {list.average_cost}</td>
-            <td>{list.seasonality}</td>
+            <td>{list.location}</td>
+            <td> {list.date}</td>
+            <td>	<span className="px-3 py-1 font-semibold rounded-md bg-[#84CC16] text-gray-50">
+    <span>{list.status}</span>
+						</span></td>
             <td className="text-xl">
-            <Link to={`/update-my-list/${list._id}`} className="text-2xl text-[#ff8900]"><TbEdit /></Link>
-                <Link className="text-2xl text-[#ff8900]"><MdDeleteSweep onClick={() => handleDelete(list._id)} /></Link>
+            <Link to={`/update-my-list/${list._id}`} className="text-2xl text-[#84CC16]"><TbEdit /></Link>
+                <Link className="text-2xl text-[#84CC16]"><MdDeleteSweep onClick={() => handleDelete(list._id)} /></Link>
             </td>
         </tr>
     );

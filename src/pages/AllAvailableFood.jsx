@@ -1,9 +1,9 @@
 import { useLoaderData } from "react-router-dom";
-import TouristSpot from "./Home/TouristSpot";
+import FeatureFood from "./Home/FeatureFood";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 
-const AllTouristSpots = () => {
+const AllAvailableFood = () => {
   //const touristSpots = useLoaderData();
 
   const touristSpotsData = useLoaderData();
@@ -35,10 +35,10 @@ const AllTouristSpots = () => {
             </div>
             <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
               {touristSpots.map((touristSpot) => (
-                <TouristSpot
+                <FeatureFood
                   key={touristSpot.id}
                   cards={touristSpot}
-                ></TouristSpot>
+                ></FeatureFood>
               ))}
             </div>
           </div>
@@ -48,4 +48,4 @@ const AllTouristSpots = () => {
   );
 };
 
-export default AllTouristSpots;
+export default AllAvailableFood;

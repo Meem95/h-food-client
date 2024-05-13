@@ -52,7 +52,7 @@ const FeatureFood = ({ cards }) => {
             />
             <span className=" mt-2 text-gray-600 text-sm">{name}</span>
           </div>
-          <div className="text-center">  <button className="text-lime-600 text-center">Details </button></div>
+          <div className="text-center">   <Link to={`/food-details/${_id}`}><button className="text-lime-600 text-center">Details </button></Link> </div>
 
         </div>
       </div>
