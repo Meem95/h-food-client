@@ -5,6 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Tooltip } from 'react-tooltip'
 import userProfile from "../../assets/images/profile.png";
 import Swal from "sweetalert2";
+import axios from "axios";
 const Navbar = () => {
 
   const [theme, setTheme] = useState('light')
@@ -36,15 +37,18 @@ const Navbar = () => {
   };
 
   const handleSignOut = () => {
+   axios.post('http://localhost:5000/logout',{}, {withCredentials: true}).then(()=>{
     logOut()
-      .then()
-      Swal.fire({
-        title: 'Success!',
-        text: ' Successfully Logout',
-        icon: 'success',
-        confirmButtonText: 'Cool'
-      })
-      .catch();
+    .then()
+    Swal.fire({
+      title: 'Success!',
+      text: ' Successfully Logout',
+      icon: 'success',
+      confirmButtonText: 'Cool'
+    })
+    .catch();
+   }) 
+   .catch();
   };
 
 
@@ -122,7 +126,7 @@ const Navbar = () => {
              
 
               <NavLink
-                to="/contact"
+                to="/my-request-list"
                 className={({ isActive }) =>
                   isActive
                     ? 'text-[#2f400e] font-bold btn-outline btn-[#2f400e] btn '
@@ -187,7 +191,7 @@ const Navbar = () => {
             </li>
             </NavLink>
             
-            <NavLink to={'/'} className={({ isActive }) =>
+            <NavLink to={'/my-request-list'} className={({ isActive }) =>
                   isActive
                     ? 'text-lime-600 font-bold '
                     : 'font-bold text-[#2f400e] '}>

@@ -12,7 +12,7 @@ import FoodDetails from "../pages/Food/FoodDetails";
 import MyLists from "../pages/MyList/MyLists";
 import UpdateFood from "../pages/UpdateFood";
 // import NotFoundPage from "../pages/NotFoundPage";
-import CountryAll from "../pages/CountryAll";
+import Request from "../pages/MyList/Request";
 
 
 const router = createBrowserRouter([
@@ -46,6 +46,13 @@ const router = createBrowserRouter([
             {
                 path: '/my-list/',
                 element:<PrivateRoute> <MyLists></MyLists></PrivateRoute>,
+                loader:()=>fetch('http://localhost:5000/food')
+
+            },
+            
+            {
+                path: '/my-request-list/',
+                element:<PrivateRoute> <Request></Request></PrivateRoute>,
                 loader:()=>fetch('http://localhost:5000/food')
 
             },

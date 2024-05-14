@@ -1,17 +1,16 @@
 
 import { useContext, useEffect, useState } from "react";
-import Mylist from "./Mylist";
+
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet";
 import axios from "axios";
+import MyRequestlist from "./MyRequestlist";
 
-
-const MyLists = () => {
-   
-  const { user } =  useContext(AuthContext) || {};
+const Request = () => {
+    const { user } =  useContext(AuthContext) || {};
   const [item, setItem] = useState([]);
-  // console.log(user);
-  const url = `http://localhost:5000/myFood/${user?.email}`;
+  console.log("requested user",user);
+  const url = `http://localhost:5000/myReqFood/${user?.email}`;
   useEffect(() => {
     axios.get(url, {withCredentials: true})
     .then(res => {
@@ -24,7 +23,7 @@ const MyLists = () => {
     
     <div className="min-h-screen max-w-7xl mx-auto text-black my-10 shadow-2xl p-5">
 <Helmet>
-    <title>  H-food  | My list</title>
+    <title>  H-food  | My Request list</title>
   </Helmet>
       <div className="overflow-x-auto">
       {
@@ -34,23 +33,22 @@ const MyLists = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Food Name</th>
-              <th>Location</th>
+              <th>Donar Name</th>
+              <th>Pickup Location</th>
               <th>Expired Date</th>
-              <th> Status</th>
-              <th> Action</th>
+              <th> Request Date </th>
             </tr>
           </thead>
           <tbody>
             {
-                item.map((list , index)=> <Mylist
+                item.map((list , index)=> <MyRequestlist
             key={list._id}
             list={list}
             listData={setItem}
             item={item}
             
             index={index + 1}
-            ></Mylist>)
+            ></MyRequestlist>)
         }
            
            
@@ -62,5 +60,4 @@ const MyLists = () => {
     </div>
   );
 };
-
-export default MyLists;
+export default Request;

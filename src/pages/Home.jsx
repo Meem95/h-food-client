@@ -1,3 +1,4 @@
+import React from "react";
 import { Helmet } from "react-helmet";
 import Slider from "./Home/Slider";
 import Gallery from "./Home/Gallery";
@@ -10,8 +11,11 @@ const Home = () => {
   const allData = useLoaderData();
   const featureFoods = allData.locationData;
 
-  // Sort the featureFoods by quantity in descending order
-  const sortedFeatureFoods = [...featureFoods].sort((a, b) => b.quantity - a.quantity);
+  // Filter featureFoods by status "available"
+  const availableFeatureFoods = featureFoods.filter(featureFood => featureFood.status === "available");
+
+  // Sort the availableFeatureFoods by quantity in descending order
+  const sortedFeatureFoods = [...availableFeatureFoods].sort((a, b) => b.quantity - a.quantity);
 
   // Select the top six feature foods
   const sixfeatureFoods = sortedFeatureFoods.slice(0, 6);
@@ -43,7 +47,6 @@ const Home = () => {
             </div>
             <div className="text-center">
               <Link to={'/available-food'} > <button className="btn  bg-lime-600 text-white btn-wide btn-md">View All</button></Link>
-             
             </div>
           </section>
         </Fade>

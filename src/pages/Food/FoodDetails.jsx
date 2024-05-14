@@ -1,20 +1,75 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLoaderData } from "react-router-dom";
-
+import { AuthContext } from "../../providers/AuthProvider";
+import { useContext } from "react";
+import Swal from "sweetalert2";
 const FoodDetails = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [additionalNotes, setAdditionalNotes] = useState("");
-
+  const { user } = useContext(AuthContext);
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
 
   const updateMyLocation = useLoaderData();
-  const { food_name, quantity, location, date, image, status, short_description, email, name, userImage } = updateMyLocation;
+  const { food_name, quantity, location, date, image, status, short_description, email, name, userImage ,_id} = updateMyLocation;
 
-  const handleRequest = () => {
-    // Logic to handle request submission
+  const handleRequest = (event) => {
+    event.preventDefault();
+    const createdAt = new Date().toISOString();
+    const newLocation = {
+      food_name,
+      quantity,
+      location,
+      date,
+      image,
+      name,
+      date,
+      email,
+      userImage,
+      status: "requested",
+      short_description:additionalNotes,
+      req_email: user.email,
+      req_name: user.displayName,
+      req_userImage: user.photoURL,
+      req_date:createdAt,
+      
+    };
+
+    // Send data to the server
+    fetch(`http://localhost:5000/food/${_id}`, {
+      method: "PUT",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(newLocation)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          // Display success message
+          Swal.fire({
+            title: 'Success!',
+            text: 'Request Food Added Successfully',
+            icon: 'success',
+            confirmButtonText: 'Cool'
+          });
+          // Close modal
+          setIsOpen(false);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Display error message
+        Swal.fire({
+          title: 'Error!',
+          text: 'Failed to add request. Please try again later.',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
+      });
   };
 
   return (
@@ -59,63 +114,66 @@ const FoodDetails = () => {
               <h3 className="text-lg font-medium text-gray-800 dark:text-white" id="modal-title">
                 Request Food
               </h3>
-              <div className="mt-5 text-left">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Name</label>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{food_name}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Image</label>
-                    <img className="mt-1 rounded-lg" src={image} alt="Food" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food ID</label>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{updateMyLocation.id}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Donator Email</label>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{email}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Donator Name</label>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{name}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">User Email</label>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{updateMyLocation.user_email}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Request Date</label>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{new Date().toLocaleString()}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Pickup Location</label>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{location}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Expire Date</label>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{date}</p>
-                  </div>
-                  <div className="col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Additional Notes</label>
-                    <textarea
-                      value={additionalNotes}
-                      onChange={(e) => setAdditionalNotes(e.target.value)}
-                      className="w-full mt-1 rounded-md focus:outline-[#84CC16] text-black border p-3"
-                      placeholder="Enter additional notes..."
-                    ></textarea>
+              <form onSubmit={handleRequest}>
+                <div className="mt-5 text-left">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Name</label>
+                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{food_name}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Image</label>
+                      <img className="mt-1 rounded-lg" src={image} alt="Food" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food ID</label>
+                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{updateMyLocation.id}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Donator Email</label>
+                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{email}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Donator Name</label>
+                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{name}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">User Email</label>
+                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{updateMyLocation.user_email}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Request Date</label>
+                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{new Date().toLocaleString()}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Pickup Location</label>
+                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{location}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Expire Date</label>
+                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{date}</p>
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Additional Notes</label>
+                      <textarea
+                        //value={additionalNotes}
+                        defaultValue={short_description}
+                        onChange={(e) => setAdditionalNotes(e.target.value)}
+                        className="w-full mt-1 rounded-md focus:outline-[#84CC16] text-black border p-3"
+                        placeholder="Enter additional notes..."
+                      ></textarea>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="mt-6">
-                <button onClick={handleRequest} className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                  Request
-                </button>
-                <button onClick={toggleModal} className="ml-3 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
-                  Cancel
-                </button>
-              </div>
+                <div className="mt-6">
+                  <button type="submit" className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
+                    Request
+                  </button>
+                  <button onClick={toggleModal} className="ml-3 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
+                    Cancel
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ const Footer = () => {
     const [countryTitle, setCountryTitle] = useState([]);
 
     useEffect(() => {
-        fetch("https://b9a10-tour-server.vercel.app/location")
+        fetch("http://localhost:5000/food")
             .then((response) => response.json())
             .then((data) => setTitle(data.slice(0, 6)));
 
@@ -40,22 +40,22 @@ const Footer = () => {
                     </div>
                     <div className="grid grid-cols-2 lg:grid-cols-3 md:grid-cols-2 gap-x-9 lg:w-2/3 sm:grid-cols-4">
                         <div className="space-y-3 ml-4">
-                            <h3 className="tracking-wide uppercase">Locations</h3>
+                            <h3 className="tracking-wide uppercase text-lime-600">Available Food</h3>
                             <ul className="space-y-1">
                                 {title.map((location) => (
-                                    <li key={location._id}><Link to={`/food-details/${location._id}`}>{truncateString(location.tourists_spot_name, 2)}</Link> </li>
+                                    <li key={location._id}><Link to={`/food-details/${location._id}`}>{truncateString(location.food_name, 2)}</Link> </li>
                                 ))}
                             </ul>
                         </div>
                         <div className="space-y-3">
-                            <h3 className="uppercase">Quick Link</h3>
+                            <h3 className="uppercase text-lime-600">Quick Link</h3>
                             <ul className="space-y-1">
-                                <li><Link to="/all-tourist-spot">Available Foods</Link></li>
+                                <li><Link to="/available-food">Available Foods</Link></li>
                                 <li><Link to="/contact">Contact</Link></li>
                             </ul>
                         </div>
                         <div className="space-y-3">
-                            <div className="uppercase">Social media</div>
+                            <div className="uppercase text-lime-600">Social media</div>
                             <div className="flex justify-start space-x-3">
                                 <a rel="noopener noreferrer" href="#" title="Facebook" className="flex items-center p-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" className="w-5 h-5 fill-current">

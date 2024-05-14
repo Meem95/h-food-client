@@ -5,7 +5,11 @@ import { Helmet } from "react-helmet";
 
 const AllAvailableFood = () => {
   const footData = useLoaderData();
-  const [foods, setFoods] = useState(footData);
+
+  // Filter footData by status "available"
+  const availableFoods = footData.filter(food => food.status === "available");
+
+  const [foods, setFoods] = useState(availableFoods);
   const [searchTerm, setSearchTerm] = useState("");
   const [isThreeColumnLayout, setIsThreeColumnLayout] = useState(true); // Track layout state
 
