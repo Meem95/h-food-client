@@ -26,8 +26,7 @@ const router = createBrowserRouter([
                 element: <Home></Home>, 
               loader: async () => {
                 const [locationData, otherData] = await Promise.all([
-                    fetch('http://localhost:5000/food').then(res => res.json()),
-                    fetch('https://b9a10-tour-server.vercel.app/country').then(res => res.json())
+                    fetch('http://localhost:5000/food').then(res => res.json())
                 ]);
                 return { locationData, otherData };
             }

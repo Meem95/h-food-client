@@ -1,58 +1,46 @@
 import { Helmet } from "react-helmet";
-import { IoAddCircleSharp } from "react-icons/io5";
+import { MdOutlineFoodBank } from "react-icons/md";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 const UpdateFood = () => {
   
-  const updateMyLocation = useLoaderData();
+  const updateMyFood = useLoaderData();
   const {
-    _id,
-    tourists_spot_name,
-    country_Name,
-    average_cost,
-    totalVisitorsPerYear,
-    location,
-    seasonality,
-    image,
-    travel_time,
-    short_description,
-  } = updateMyLocation;
+    food_name, quantity, location, date, image, status, short_description, email, name, userImage
+    , _id,
+  } = updateMyFood;
   const handleUpdatedLocation = (event) => {
     event.preventDefault();
 
     const form = event.target;
 
-    const tourists_spot_name = form.tourists_spot_name.value;
-    const country_Name = form.country_Name.value;
-    const average_cost = form.average_cost.value;
-    const totalVisitorsPerYear = form.totalVisitorsPerYear.value;
+    const food_name = form.food_name.value;
+    const quantity = form.quantity.value;
+    const date = form.date.value;
     const location = form.location.value;
-    const seasonality = form.seasonality.value;
+    const status = form.status.value;
     const image = form.image.value;
-    const travel_time = form.travel_time.value;
     const short_description = form.short_description.value;
 
-    const updateLocation = {
-      tourists_spot_name,
-      country_Name,
-      average_cost,
-      totalVisitorsPerYear,
+    const updateFood = {
+      food_name,
+      quantity,
+      date,
       location,
-      seasonality,
+      status,
       image,
-      travel_time,
       short_description,
     };
 
-    console.log(updateLocation);
+    console.log(updateFood);
 
     //send data to the server
-    fetch(`https://b9a10-tour-server.vercel.app/location/${_id}`, {
+    fetch(`http://localhost:5000/food/${_id}`, {
       method: "Put",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(updateLocation),
+      body: JSON.stringify(updateFood),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -70,21 +58,19 @@ const UpdateFood = () => {
   return (
     <div>
       <Helmet>
-        <title> Travel Trek | Update Tourist Spot</title>
+        <title>  H-food | Update Your Food</title>
       </Helmet>
       <section className="p-6 text-black">
         <div className="shadow-lg p-5 border dark:bg-[#1a2641d5]">
           <div className="mt-5 mb-8 flex  justify-center">
-            <div className="text-3xl mt-1 text-[#FF8900]">
-              <IoAddCircleSharp />
-            </div>
+          <div className="text-3xl mt-1 text-lime-600"><MdOutlineFoodBank /></div>
             <div>
               {" "}
               <p className="text-center text-3xl font-bold">
-                Update Your Tourist Spot
+                Update Your Food
               </p>
               <p className="text-center text-2xl font-semibold">
-              {tourists_spot_name}
+              {food_name}
               </p>
             </div>
           </div>
@@ -92,85 +78,51 @@ const UpdateFood = () => {
             <div className="flex gap-8 ">
               <div className="flex-1">
                 <label className="block mb-2 dark:text-white" htmlFor="name">
-                  Tourists Spot Name
+                Food Name
                 </label>
                 <input
                   className="w-full p-2 border rounded-md focus:outline-[#FF8900]"
                   type="text"
-                  placeholder="Tourists Spot Name"
-                  id="tourists_spot_name"
-                  name="tourists_spot_name"
-                  defaultValue={tourists_spot_name}
+                  placeholder=" Food Name"
+                  id="food_name"
+                  name="food_name"
+                  defaultValue={food_name}
                 />
 
+                
                 <label
                   className="block mt-4 mb-2 dark:text-white"
-                  htmlFor="country_Name"
+                  htmlFor="quantity"
                 >
-                  Country Name
-                </label>
-                <select
-                  name="country_Name"
-                  defaultValue={country_Name}
-                  id="country_Name"
-                  className="w-full p-2 border rounded-md focus:outline-[#FF8900]"
-                  type="text"
-                  placeholder="Select Country Name"
-                >
-                {["Bangladesh", "Thailand", "Indonesia", "Malaysia", "Vietnam", "Cambodia"].map((countryOption) => (
-    <option
-      key={countryOption}
-      value={countryOption}
-      // Set the selected attribute if the current option matches the country_Name
-      selected={countryOption === country_Name}
-    >
-      {countryOption}
-    </option>
-  ))}
-                  {/* <option value="" selected>
-                    Select Country
-                  </option>
-                  <option value="Bangladesh">Bangladesh</option>
-                  <option value="Thailand">Thailand</option>
-                  <option value="Indonesia">Indonesia</option>
-                  <option value="Malaysia">Malaysia</option>
-                  <option value="Vietnam">Vietnam</option>
-                  <option value="Cambodia">Cambodia</option> */}
-                </select>
-
-                <label
-                  className="block mt-4 mb-2 dark:text-white"
-                  htmlFor="average_cost"
-                >
-                  Average Cost
+                  Food Quantity
                 </label>
                 <input
                   className="w-full p-2 border rounded-md focus:outline-[#FF8900]"
                   type="number"
-                  placeholder="Enter Average Cost"
-                  id="average_cost"
-                  name="average_cost"
-                  defaultValue={average_cost}
+                  placeholder="Enter Food Quantity"
+                  id="quantity"
+                  name="quantity"
+                  defaultValue={quantity}
                 />
                 <label
                   className="block mt-4 mb-2 dark:text-white"
-                  htmlFor="totalVisitorsPerYear"
+                  htmlFor="date"
                 >
-                  Total Visitors Per Year
+                 Expired Date
                 </label>
                 <input
                   className="w-full p-2 border rounded-md focus:outline-[#FF8900]"
                   type="text"
-                  placeholder="Enter Total Visitors Per Year"
-                  id="totalVisitorsPerYear"
-                  name="totalVisitorsPerYear"
-                  defaultValue={totalVisitorsPerYear}
+                  placeholder="Enter Expired Date"
+                  id="date"
+                  name="date"
+                  defaultValue={date}
                 />
               </div>
               {/* Right side */}
               <div className="flex-1">
                 <label className="block mb-2 dark:text-white" htmlFor="image">
-                  Image
+                  Food Image
                 </label>
                 <input
                   className="w-full p-2 border rounded-md focus:outline-[#FF8900]"
@@ -184,7 +136,7 @@ const UpdateFood = () => {
                   className="block mb-2 mt-4 dark:text-white"
                   htmlFor="type"
                 >
-                  Location
+                   Pickup Location
                 </label>
                 <input
                   className="w-full p-2 border rounded-md focus:outline-[#FF8900]"
@@ -197,37 +149,24 @@ const UpdateFood = () => {
 
                 <label
                   className="block mt-4 mb-2 dark:text-white"
-                  htmlFor="seasonality"
+                  htmlFor="status"
                 >
-                  Seasonality
+                  Food Status
                 </label>
                 <input
                   className="w-full p-2 border rounded-md focus:outline-[#FF8900]"
                   type="text"
                   placeholder=" (Like Summer/Winter)"
-                  id="seasonality"
-                  name="seasonality"
-                  defaultValue={seasonality}
+                  id="status"
+                  name="status"
+                  defaultValue={status}
                 />
-                <label
-                  className="block mt-4 mb-2 dark:text-white"
-                  htmlFor="travel_time"
-                >
-                  Travel Time
-                </label>
-                <input
-                  className="w-full p-2 border rounded-md focus:outline-[#FF8900]"
-                  type="text"
-                  placeholder=" Like 7 Days"
-                  id="travel_time"
-                  name="travel_time"
-                  defaultValue={travel_time}
-                />
+
               </div>
             </div>
             <label
               className="block mt-4 mb-2 dark:text-white"
-              htmlFor="travel_time"
+              htmlFor="description"
             >
               Short Description
             </label>
@@ -240,9 +179,9 @@ const UpdateFood = () => {
               className="w-full rounded-md  focus:outline-[#FF8900] text-black  border p-3 "
             ></textarea>
             <input
-              className="px-4 w-full py-2 mt-4 rounded hover:bg-[#ff9811]  bg-[#FF8900] duration-200 text-white cursor-pointer font-semibold"
+              className="px-4 w-full py-2 mt-4 rounded hover:bg-[#84CC16]  bg-[#84CC16] duration-200 text-white cursor-pointer font-semibold"
               type="submit"
-              value="Update Tourist Spot"
+              value="Update Food"
             />
           </form>
         </div>

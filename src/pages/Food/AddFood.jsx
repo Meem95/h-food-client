@@ -77,6 +77,7 @@ const AddFood = () => {
                     placeholder="Food Name"
                     id="food_name"
                     name="food_name"
+                    required
                   />
 
                   <label
@@ -91,12 +92,13 @@ const AddFood = () => {
                     placeholder="Enter Quantity / Person"
                     id="quantity"
                     name="quantity"
+                    required
                   />
                   <label
                     className="block mt-4 mb-2 dark:text-white"
                     htmlFor="date"
                   >
-                  Expired Date/
+                  Expired Date
                   </label>
                   <input
                     className="w-full p-2 border rounded-md focus:outline-[#84CC16]"
@@ -104,6 +106,7 @@ const AddFood = () => {
                     placeholder="Enter Expired Date"
                     id="date"
                     name="date"
+                    required
                   />
                 </div>
                 {/* Right side */}
@@ -117,6 +120,7 @@ const AddFood = () => {
                     placeholder="Enter Image URL"
                     id="image"
                     name="image"
+                    required
                   />
                   <label
                     className="block mb-2 mt-4 dark:text-white"
@@ -130,6 +134,7 @@ const AddFood = () => {
                     placeholder="Enter Location"
                     id="location"
                     name="location"
+                    required
                   />
 
                   <label
@@ -151,13 +156,13 @@ const AddFood = () => {
               </div>
               <label
                     className="block mt-4 mb-2 dark:text-white"
-                    htmlFor="travel_time"
+                    htmlFor="description"
                   >
                     Short Notes
                   </label>
-              <textarea id="description" name="short_description" rows="7" placeholder="short description" className="w-full rounded-md  focus:outline-[#84CC16] text-black  border p-3 "></textarea>
+              <textarea id="description" required name="short_description" rows="7" placeholder="short description" className="w-full rounded-md  focus:outline-[#84CC16] text-black  border p-3 "></textarea>
               <input
-                className="px-4 w-full py-2 mt-4 rounded hover:bg-[#ff9811]  bg-[#84CC16] duration-200 text-white cursor-pointer font-semibold"
+                className="px-4 w-full py-2 mt-4 rounded hover:bg-[#84CC16]  bg-[#84CC16] duration-200 text-white cursor-pointer font-semibold"
                 type="submit"
                 value="Add Food"
               />
