@@ -24,7 +24,7 @@ const FeatureFood = ({ cards }) => {
     <div>
       <div className="bg-white rounded-xl overflow-hidden shadow-2xl ">
         <img
-          className="w-full h-full "
+          className="w-full h-[252px] "
           src={image}
           alt="Home in Countryside"
         />
@@ -46,7 +46,7 @@ const FeatureFood = ({ cards }) => {
           </div>
           <div className="mt-2  ">
             <img
-              className="w-[50px] "
+              className="w-[40px] rounded-full h-[40px] "
               src={userImage}
               alt="Home in Countryside"
             />

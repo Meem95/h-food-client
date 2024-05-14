@@ -5,11 +5,11 @@ import { AuthContext } from "../providers/AuthProvider";
 import app from "../firebase/firebase.config";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
-
+import axios from 'axios';
 
 const Login = () => {
-  const auth =getAuth(app);
-  const [user ,setUser] = useState(null);
+  const auth = getAuth(app);
+  const [user, setUser] = useState(null);
   console.log(user)
   const { signIn } = useContext(AuthContext);
   const location = useLocation();
@@ -18,57 +18,57 @@ const Login = () => {
   const provider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
-  const handleGoogleSignIn = ()=> {
+  const handleGoogleSignIn = () => {
     signInWithPopup(auth, provider)
-    .then((result) => {
-     
-     
-      const loggedInUser = result.user;
-      console.log(loggedInUser);
-      setUser(loggedInUser);
-   
-      Swal.fire({
+      .then((result) => {
+
+
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        setUser(loggedInUser);
+
+        Swal.fire({
           title: 'Success!',
           text: 'Login Successfully',
           icon: 'success',
           confirmButtonText: 'Cool'
         })
-  
-      navigate(location?.state ? location.state : '/');
-    }).catch((error) => {
-      
-      console.log(error.message);
-      Swal.fire({
-        title: 'error!',
-        text: 'Invalid email or password. Please try again',
-        icon: 'error',
-        confirmButtonText: 'Cool'
-      })
-    });
-  }
-  const handleGithubSignIn = ()=> {
-    signInWithPopup(auth, githubProvider)
-    .then((result) => {
-      const loggedInUser = result.user;
-      console.log(loggedInUser);
-      setUser(loggedInUser);
-      Swal.fire({
-        title: 'Success!',
-        text: 'Login Successfully',
-        icon: 'success',
-        confirmButtonText: 'Cool'
-      })
 
-      navigate(location?.state ? location.state : '/');
-    }).catch((error) => {
-      Swal.fire({
-        title: 'error!',
-        text: 'Invalid email or password. Please try again',
-        icon: 'error',
-        confirmButtonText: 'Cool'
-      })
-      console.log(error.message);
-    });
+        navigate(location?.state ? location.state : '/');
+      }).catch((error) => {
+
+        console.log(error.message);
+        Swal.fire({
+          title: 'error!',
+          text: 'Invalid email or password. Please try again',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
+      });
+  }
+  const handleGithubSignIn = () => {
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        setUser(loggedInUser);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Login Successfully',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        })
+
+        navigate(location?.state ? location.state : '/');
+      }).catch((error) => {
+        Swal.fire({
+          title: 'error!',
+          text: 'Invalid email or password. Please try again',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
+        console.log(error.message);
+      });
   }
 
 
@@ -81,37 +81,46 @@ const Login = () => {
     const password = form.get("password");
     console.log(email, password);
     signIn(email, password)
-        .then(result => {
-            console.log(result.user);
-            
-            Swal.fire({
-              title: 'Success!',
-              text: 'Login Successfully',
-              icon: 'success',
-              confirmButtonText: 'Cool'
-            })
-            // navigate after login
-            navigate(location?.state ? location.state : '/');
+      .then(result => {
+        //console.log(result.user);
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const user = { email };
+        axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+          .then(res => {
+            console.log(res.data)
+            if (res.data.success) {
+              navigate(location?.state ? location?.state : '/')
+            }
+          })
+        Swal.fire({
+          title: 'Success!',
+          text: 'Login Successfully',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        })
+        // navigate after login
+        // navigate(location?.state ? location.state : '/');
 
+      })
+      .catch(error => {
+        console.error(error);
+
+        Swal.fire({
+          title: 'error!',
+          text: 'Invalid email or password. Please try again',
+          icon: 'error',
+          confirmButtonText: 'Sad'
         })
-        .catch(error => {
-            console.error(error);
-            
-            Swal.fire({
-              title: 'error!',
-              text: 'Invalid email or password. Please try again',
-              icon: 'error',
-              confirmButtonText: 'Sad'
-            })
-            
-        })
+
+      })
   };
-    return (
-        <div>
-        <Helmet>
+  return (
+    <div>
+      <Helmet>
         <title> H-food | Login</title>
       </Helmet>
-             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-[#dfe0e6] text-black mx-auto my-14">
+      <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-[#dfe0e6] text-black mx-auto my-14">
         <h1 className="text-2xl font-bold text-center">Login</h1>
         <form onSubmit={handleLogin} noValidate="" action="" className="space-y-6">
           <div className="space-y-1 text-sm">
@@ -126,7 +135,7 @@ const Login = () => {
               className="w-full px-4 py-3 rounded-md border-gray-700 bg-white text-black focus:border-violet-400"
             />
           </div>
-          
+
           <div className="space-y-1 text-sm">
             <label htmlFor="password" className="block text-black">
               Password
@@ -149,7 +158,7 @@ const Login = () => {
           <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
         </div>
         <div className="flex justify-center space-x-4">
-          <button  onClick={handleGoogleSignIn} aria-label="Log in with Google" className="p-3 rounded-sm">
+          <button onClick={handleGoogleSignIn} aria-label="Log in with Google" className="p-3 rounded-sm">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
@@ -172,20 +181,20 @@ const Login = () => {
         <p className="text-xs text-center sm:px-6 text-black">
           Do not have an account?
           <Link to="/register">
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="underline text-black"
-          >
-            {" "}
+            <a
+              rel="noopener noreferrer"
+              href="#"
+              className="underline text-black"
+            >
+              {" "}
             Sign up
           </a>
           </Link>
-         
+
         </p>
       </div>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Login;

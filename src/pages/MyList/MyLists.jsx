@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import Mylist from "./Mylist";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet";
-
+import axios from "axios";
 
 
 const MyLists = () => {
@@ -16,13 +16,18 @@ const MyLists = () => {
     const { user } =  useContext(AuthContext) || {};
   const [item, setItem] = useState([]);
   // console.log(user);
+  const url = `http://localhost:5000/myFood/${user?.email}`;
   useEffect(() => {
-    fetch(`http://localhost:5000/myFood/${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setItem(data);
-      });
-  }, [user]);
+    axios.get(url, {withCredentials: true})
+    .then(res => {
+      setItem(res.data);
+    })
+    // fetch(`http://localhost:5000/myFood/${user?.email}`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setItem(data);
+    //   });
+  }, [url]);
     
   return (
     

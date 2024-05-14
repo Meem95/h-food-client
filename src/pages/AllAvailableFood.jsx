@@ -4,22 +4,39 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 
 const AllAvailableFood = () => {
-  //const touristSpots = useLoaderData();
+  const footData = useLoaderData();
+  const [foods, setFoods] = useState(footData);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isThreeColumnLayout, setIsThreeColumnLayout] = useState(true); // Track layout state
 
-  const touristSpotsData = useLoaderData();
-  const [touristSpots, setTouristSpots] = useState(touristSpotsData);
-
-  const sortTouristSpotsByCost = () => {
-    const sortedTouristSpots = [...touristSpots].sort(
-      (a, b) => a.average_cost - b.average_cost
-    );
-    setTouristSpots(sortedTouristSpots);
+  const sortByExpireDate = () => {
+    const sortedFoods = [...foods].sort((a, b) => {
+      // Convert date strings to Date objects
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      // Compare dates
+      return dateA.getTime() - dateB.getTime();
+    });
+    setFoods(sortedFoods);
   };
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredFoods = foods.filter((food) =>
+    food.food_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const toggleLayout = () => {
+    setIsThreeColumnLayout((prevLayout) => !prevLayout); 
+  };
+
   return (
     <div>
       <Helmet>
-      <title> Travel Trek |Tourists Spots</title>
-    </Helmet>
+        <title> H-food |Tourists Spots</title>
+      </Helmet>
       <div className="min-h-screen max-w-7xl mx-auto">
         <section className="py-6 sm:py-12 ">
           <div className=" p-6 mx-auto space-y-5">
@@ -28,13 +45,25 @@ const AllAvailableFood = () => {
                 Tourists Spots
               </h2>
             </div>
-            <div className="text-center">
-              <button className="btn font-bold"onClick={sortTouristSpotsByCost}>
-                Sort by Average Cost (Low to High)
+            <div className="flex justify-center">
+              <input
+                type="text"
+                placeholder="Search by Food Name"
+                className="border w-1/3 border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:border-lime-600"
+                value={searchTerm}
+                onChange={handleSearch}
+              />
+            </div>
+            <div className="text-center ">
+              <button className="btn font-bold" onClick={sortByExpireDate}>
+                Sort by Food Expired Date (Calendar Date Wise)
+              </button>
+              <button className="btn font-bold ml-2  mb-10" onClick={toggleLayout}>
+                {isThreeColumnLayout ? "Switch to Two Column" : "Switch to Three Column"}
               </button>
             </div>
-            <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-              {touristSpots.map((touristSpot) => (
+            <div className={`grid ${isThreeColumnLayout ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 md:grid-cols-1 lg:grid-cols-2 lg:gap-20 lg:w-full lg:max-w-5xl mx-auto'} gap-x-10 gap-y-10`}>
+              {filteredFoods.map((touristSpot) => (
                 <FeatureFood
                   key={touristSpot.id}
                   cards={touristSpot}

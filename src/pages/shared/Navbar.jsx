@@ -187,7 +187,7 @@ const Navbar = () => {
             </li>
             </NavLink>
             
-            <NavLink to={'/my-list'} className={({ isActive }) =>
+            <NavLink to={'/'} className={({ isActive }) =>
                   isActive
                     ? 'text-lime-600 font-bold '
                     : 'font-bold text-[#2f400e] '}>
