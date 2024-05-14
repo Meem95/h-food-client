@@ -27,10 +27,9 @@ const Home = () => {
           <section className="py-6 sm:py-12 ">
             <div className=" p-6 mx-auto space-y-5">
               <div className="my-6 animate__animated animate__bounce">
-                <h2 className="text-5xl text-center font-bold ">
-                  Featured Food
-                </h2>
+              <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">Featured  <span className="text-lime-600">Food</span></h1>
               </div>
+              
               <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
                 {sixfeatureFoods.map((featureFood) => (
                   <FeatureFood
