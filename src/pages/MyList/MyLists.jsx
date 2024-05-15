@@ -35,6 +35,7 @@ const MyLists = () => {
             <tr>
               <th></th>
               <th>Food Name</th>
+              <th>Food Quantity</th>
               <th>Location</th>
               <th>Expired Date</th>
               <th> Status</th>

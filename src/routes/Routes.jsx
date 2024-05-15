@@ -11,7 +11,7 @@ import AllAvailableFood from "../pages/AllAvailableFood";
 import FoodDetails from "../pages/Food/FoodDetails";
 import MyLists from "../pages/MyList/MyLists";
 import UpdateFood from "../pages/UpdateFood";
-// import NotFoundPage from "../pages/NotFoundPage";
+ import NotFoundPage from "../pages/NotFoundPage";
 import Request from "../pages/MyList/Request";
 
 
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Root></Root>, 
-        // errorElement: <NotFoundPage />,
+         errorElement: <NotFoundPage />,
         children: [
             {
                 path: '/',

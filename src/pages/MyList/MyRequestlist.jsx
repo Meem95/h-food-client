@@ -1,6 +1,5 @@
 const MyRequestlist = ({list}) => {
-    //console.log("all req data", list);
-  
+    
     return (
       <tr key={list._id}>
         <th></th>

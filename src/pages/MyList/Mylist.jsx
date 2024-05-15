@@ -3,8 +3,7 @@ import { MdDeleteSweep } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const Mylist = ({listData, item, list, index }) => {
-    //console.log(list._id)
+const Mylist = ({ listData, item, list, index }) => {
     const handleDelete = _id => {
         Swal.fire({
             title: 'Are you sure?',
@@ -32,37 +31,44 @@ const Mylist = ({listData, item, list, index }) => {
                             listData(remaining);
                         }
                     })
-
             }
         })
     }
 
-    return (
-        <tr key={list._id}>
-            <th>{index}</th>
-            <td>
-                <div className="flex items-center gap-3">
-                    <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                            <img src={list.image} alt="Avatar Tailwind CSS Component" />
+    // Check if the food status is "available" before rendering the table row
+    if (list.status === "available") {
+        return (
+            <tr key={list._id}>
+                <th>{index}</th>
+                <td>
+                    <div className="flex items-center gap-3">
+                        <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                                <img src={list.image} alt="Avatar Tailwind CSS Component" />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="font-bold">{list.food_name}</div>
                         </div>
                     </div>
-                    <div>
-                        <div className="font-bold">{list.food_name}</div>
-                    </div>
-                </div>
-            </td>
-            <td>{list.location}</td>
-            <td> {list.date}</td>
-            <td>	<span className="px-3 py-1 font-semibold rounded-md bg-[#84CC16] text-gray-50">
-    <span>{list.status}</span>
-						</span></td>
-            <td className="text-xl">
-            <Link to={`/update-my-list/${list._id}`} className="text-2xl text-[#84CC16]"><TbEdit /></Link>
-                <Link className="text-2xl text-[#84CC16]"><MdDeleteSweep onClick={() => handleDelete(list._id)} /></Link>
-            </td>
-        </tr>
-    );
+                </td>
+                <td>{list.quantity}</td>
+                <td>{list.location}</td>
+                <td>{list.date}</td>
+                <td>
+                    <span className="px-3 py-1 font-semibold rounded-md bg-[#84CC16] text-gray-50">
+                        <span>{list.status}</span>
+                    </span>
+                </td>
+                <td className="text-xl">
+                    <Link to={`/update-my-list/${list._id}`} className="text-2xl text-[#84CC16]"><TbEdit /></Link>
+                    <MdDeleteSweep className="text-2xl text-[#84CC16]" onClick={() => handleDelete(list._id)} />
+                </td>
+            </tr>
+        );
+    } else {
+        return null; 
+    }
 };
 
 export default Mylist;
