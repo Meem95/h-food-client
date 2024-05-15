@@ -12,7 +12,7 @@ const MyRequestlist = ({list}) => {
               </div>
             </div>
             <div>
-              <div className="font-bold">{list.food_name}</div>
+              <div className="font-bold">{list.name}</div>
             </div>
           </div>
         </td>

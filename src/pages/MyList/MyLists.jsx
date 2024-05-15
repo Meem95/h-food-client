@@ -11,7 +11,7 @@ const MyLists = () => {
   const { user } =  useContext(AuthContext) || {};
   const [item, setItem] = useState([]);
   // console.log(user);
-  const url = `http://localhost:5000/myFood/${user?.email}`;
+  const url = `https://b9a11-food-server.vercel.app/myFood/${user?.email}`;
   useEffect(() => {
     axios.get(url, {withCredentials: true})
     .then(res => {

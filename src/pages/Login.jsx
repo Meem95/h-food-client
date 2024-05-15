@@ -6,6 +6,8 @@ import app from "../firebase/firebase.config";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 import axios from 'axios';
+import r2 from "../assets/images/reg.json";
+import Lottie from "lottie-react";
 
 const Login = () => {
   const auth = getAuth(app);
@@ -21,22 +23,26 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-
-
         const loggedInUser = result.user;
+        const email = result.user.email;
         console.log(loggedInUser);
         setUser(loggedInUser);
-
+        const user = { email };
+        axios.post('https://b9a11-food-server.vercel.app/jwt', user, { withCredentials: true })
+          .then(res => {
+            console.log(res.data)
+            if (res.data.success) {
+              navigate(location?.state ? location?.state : '/')
+            }
+          })
         Swal.fire({
           title: 'Success!',
           text: 'Login Successfully',
           icon: 'success',
           confirmButtonText: 'Cool'
         })
-
         navigate(location?.state ? location.state : '/');
       }).catch((error) => {
-
         console.log(error.message);
         Swal.fire({
           title: 'error!',
@@ -50,8 +56,17 @@ const Login = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
         const loggedInUser = result.user;
+        const email = result.user.email;
         console.log(loggedInUser);
         setUser(loggedInUser);
+        const user = { email };
+        axios.post('https://b9a11-food-server.vercel.app/jwt', user, { withCredentials: true })
+          .then(res => {
+            console.log(res.data)
+            if (res.data.success) {
+              navigate(location?.state ? location?.state : '/')
+            }
+          })
         Swal.fire({
           title: 'Success!',
           text: 'Login Successfully',
@@ -86,7 +101,7 @@ const Login = () => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
         const user = { email };
-        axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+        axios.post('https://b9a11-food-server.vercel.app/jwt', user, { withCredentials: true })
           .then(res => {
             console.log(res.data)
             if (res.data.success) {
@@ -120,8 +135,11 @@ const Login = () => {
       <Helmet>
         <title> H-food | Login</title>
       </Helmet>
-      <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-[#dfe0e6] text-black mx-auto my-14">
-        <h1 className="text-2xl font-bold text-center">Login</h1>
+      <div className="my-8">
+      <h1 className="text-4xl font-bold text-center">Login</h1></div>
+      <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-100  shadow-2xl text-black mx-auto mb-14">
+        
+        <Lottie className="h-28 w-full" animationData={r2} />
         <form onSubmit={handleLogin} noValidate="" action="" className="space-y-6">
           <div className="space-y-1 text-sm">
             <label htmlFor="email" className="block text-black">
@@ -148,7 +166,7 @@ const Login = () => {
               className="w-full px-4 py-3 rounded-md border-gray-700 bg-white text-black focus:border-violet-400"
             />
           </div>
-          <button className="block w-full p-3 text-center rounded-sm text-gray-900 bg-violet-400">
+          <button className="block w-full p-3 text-center rounded-sm text-white text-lg bg-lime-600">
             Login
           </button>
         </form>

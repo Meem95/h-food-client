@@ -28,7 +28,7 @@ const AddFood = () => {
         console.log(newLocation);
 
         //send data to the server
-        fetch('http://localhost:5000/food', {
+        fetch('https://b9a11-food-server.vercel.app/food', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

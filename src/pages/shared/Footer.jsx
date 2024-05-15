@@ -7,13 +7,11 @@ const Footer = () => {
     const [countryTitle, setCountryTitle] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/food")
+        fetch("https://b9a11-food-server.vercel.app/food")
             .then((response) => response.json())
             .then((data) => setTitle(data.slice(0, 6)));
 
-        fetch("https://b9a10-tour-server.vercel.app/country")
-            .then((response) => response.json())
-            .then((data) => setCountryTitle(data.slice(0, 6)));
+       
 
     }, []);
 
@@ -28,7 +26,7 @@ const Footer = () => {
 
     return (
         <div>
-            <footer className="px-4 divide-y font-semibold max-w-7xl mx-auto bg-[#FFFFE0]">
+            <footer className="px-4 divide-y font-semibold max-w-7xl mx-auto bg-gray-100  ">
                 <div className="container flex flex-col  lg:justify-around py-10 mx-auto space-x-10 space-y-8 lg:flex-row lg:space-y-0">
                     <div className=" lg:w-1/4  m-5 lg:m-2">
                         <a rel="noopener noreferrer" href="#" className="justify-center space-x-3 lg:justify-start">

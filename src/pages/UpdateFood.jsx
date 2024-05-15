@@ -35,7 +35,7 @@ const UpdateFood = () => {
     console.log(updateFood);
 
     //send data to the server
-    fetch(`http://localhost:5000/food/${_id}`, {
+    fetch(`https://b9a11-food-server.vercel.app/food/${_id}`, {
       method: "Put",
       headers: {
         "content-type": "application/json",

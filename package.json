@@ -1,5 +1,5 @@
 {
-  "name": "b9a10-tour-client",
+  "name": "b9a11-h-food",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,11 +11,14 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
+    "@tanstack/react-query": "^5.36.0",
     "aos": "^2.3.4",
     "axios": "^1.6.8",
     "firebase": "^10.11.1",
+    "framer-motion": "^11.2.0",
     "leaflet": "^1.9.4",
     "localforage": "^1.10.0",
+    "lottie-react": "^2.4.0",
     "match-sorter": "^6.3.4",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",

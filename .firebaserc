@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "tour-partner-516bc"
-  }
+    "default": "h-food-396f7",
+    "\t": "h-food-396f7"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

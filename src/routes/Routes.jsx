@@ -26,7 +26,7 @@ const router = createBrowserRouter([
                 element: <Home></Home>, 
               loader: async () => {
                 const [locationData, otherData] = await Promise.all([
-                    fetch('http://localhost:5000/food').then(res => res.json())
+                    fetch('https://b9a11-food-server.vercel.app/food').then(res => res.json())
                 ]);
                 return { locationData, otherData };
             }
@@ -40,32 +40,32 @@ const router = createBrowserRouter([
             {
                 path: '/food-details/:id',
                 element:<PrivateRoute> <FoodDetails></FoodDetails></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/food/${params.id}`)
+                loader:({params})=>fetch(`https://b9a11-food-server.vercel.app/food/${params.id}`)
             },
             
             {
                 path: '/my-list/',
                 element:<PrivateRoute> <MyLists></MyLists></PrivateRoute>,
-                loader:()=>fetch('http://localhost:5000/food')
+                loader:()=>fetch('https://b9a11-food-server.vercel.app/food')
 
             },
             
             {
                 path: '/my-request-list/',
                 element:<PrivateRoute> <Request></Request></PrivateRoute>,
-                loader:()=>fetch('http://localhost:5000/food')
+                loader:()=>fetch('https://b9a11-food-server.vercel.app/food')
 
             },
             {
                 path: 'update-my-list/:id', 
                 element:<PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>, 
-                loader: ({params}) => fetch(`http://localhost:5000/food/${params.id}`)
+                loader: ({params}) => fetch(`https://b9a11-food-server.vercel.app/food/${params.id}`)
               },
             
             {
                 path: '/available-food',
                 element: <AllAvailableFood></AllAvailableFood>,
-                loader:()=>fetch('http://localhost:5000/food')
+                loader:()=>fetch('https://b9a11-food-server.vercel.app/food')
             },
             {
                 path: '/contact',

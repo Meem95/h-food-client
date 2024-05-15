@@ -6,20 +6,34 @@ import Review from "./Home/Review";
 import FeatureFood from "./Home/FeatureFood";
 import { Link, useLoaderData } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
+import {
+  useQuery,
+} from '@tanstack/react-query'
+import axios from "axios";
+
 
 const Home = () => {
-  const allData = useLoaderData();
-  const featureFoods = allData.locationData;
+  //const allData = useLoaderData();
+  const {data: allData, isPending } = useQuery({
+    queryKey : ['homedata'],
+    queryFn: async ()=>{
+      return axios.get('https://b9a11-food-server.vercel.app/food').then(res=>res.data)
+    }
 
-  // Filter featureFoods by status "available"
-  const availableFeatureFoods = featureFoods.filter(featureFood => featureFood.status === "available");
+  })
+  if(isPending){
+    return <p>Loading....!</p>
+  }
+  const featureFoods = allData;
 
-  // Sort the availableFeatureFoods by quantity in descending order
+  console.log("allData", allData)
+
+ 
+  const availableFeatureFoods = featureFoods?.filter(featureFood => featureFood.status === "available");
+
   const sortedFeatureFoods = [...availableFeatureFoods].sort((a, b) => b.quantity - a.quantity);
 
-  // Select the top six feature foods
   const sixfeatureFoods = sortedFeatureFoods.slice(0, 6);
-
   return (
     <div className="m-0 p-0">
       <Helmet>
@@ -40,8 +54,8 @@ const Home = () => {
               </div>
 
               <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-                {sixfeatureFoods.map((featureFood) => (
-                  <FeatureFood key={featureFood.id} cards={featureFood} />
+                {sixfeatureFoods?.map((featureFood) => (
+                  <FeatureFood key={featureFood?.id} cards={featureFood} />
                 ))}
               </div>
             </div>

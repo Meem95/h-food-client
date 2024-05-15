@@ -22,7 +22,7 @@ const FoodDetails = () => {
       food_name,
       quantity,
       location,
-      date,
+      ex_date:date,
       image,
       name,
       date,
@@ -38,7 +38,7 @@ const FoodDetails = () => {
     };
 
     // Send data to the server
-    fetch(`http://localhost:5000/food/${_id}`, {
+    fetch(`https://b9a11-food-server.vercel.app/food/${_id}`, {
       method: "PUT",
       headers: {
         'content-type': 'application/json'

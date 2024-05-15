@@ -37,7 +37,7 @@ const Navbar = () => {
   };
 
   const handleSignOut = () => {
-   axios.post('http://localhost:5000/logout',{}, {withCredentials: true}).then(()=>{
+   axios.post('https://b9a11-food-server.vercel.app/logout',{}, {withCredentials: true}).then(()=>{
     logOut()
     .then()
     Swal.fire({

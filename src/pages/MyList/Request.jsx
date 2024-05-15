@@ -5,12 +5,14 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import MyRequestlist from "./MyRequestlist";
+import r2 from "../../assets/images/req.json";
+import Lottie from "lottie-react";
 
 const Request = () => {
     const { user } =  useContext(AuthContext) || {};
   const [item, setItem] = useState([]);
   console.log("requested user",user);
-  const url = `http://localhost:5000/myReqFood/${user?.email}`;
+  const url = `https://b9a11-food-server.vercel.app/myReqFood/${user?.email}`;
   useEffect(() => {
     axios.get(url, {withCredentials: true})
     .then(res => {
@@ -26,6 +28,9 @@ const Request = () => {
     <title>  H-food  | My Request list</title>
   </Helmet>
       <div className="overflow-x-auto">
+        <div className="flex justify-center"><div className="w-28 "> <Lottie animationData={r2} /></div> <h1 className="text-xl font-bold">Requested Food</h1></div>
+        
+
       {
         !user? <p>no data found</p>
         :
@@ -41,7 +46,7 @@ const Request = () => {
           </thead>
           <tbody>
             {
-                item.map((list , index)=> <MyRequestlist
+            item.map((list , index)=> <MyRequestlist
             key={list._id}
             list={list}
             listData={setItem}

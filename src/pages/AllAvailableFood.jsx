@@ -39,14 +39,14 @@ const AllAvailableFood = () => {
   return (
     <div>
       <Helmet>
-        <title> H-food |Tourists Spots</title>
+        <title> H-food | Available Food</title>
       </Helmet>
       <div className="min-h-screen max-w-7xl mx-auto">
         <section className="py-6 sm:py-12 ">
           <div className=" p-6 mx-auto space-y-5">
             <div className="my-6 animate__animated animate__bounce">
               <h2 className="text-5xl text-center font-bold ">
-                Tourists Spots
+              Available Food
               </h2>
             </div>
             <div className="flex justify-center">
