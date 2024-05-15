@@ -90,15 +90,13 @@ const FoodDetails = () => {
             <p className="flex-1 pt-2"><span className="text-teal-800 text-xs uppercase font-semibold tracking-wide mt-2"> Short Notes: </span> {short_description}</p>
             <div className="flex items-center justify-between pt-2">
               <div className="flex space-x-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-gray-400">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd"></path>
-                </svg>
+                <img className="h-20 w-20 rounded-full" src={userImage}/>
                 <span className="self-center text-sm">{name}</span>
               </div>
-              <span className="text-xs">{status}</span>
+              <span className="text-lg bg-lime-500 p-2 rounded-xl text-white">{status}</span>
             </div>
             <div className="text-center mt-6">
-              <button onClick={toggleModal} className="inline-flex items-center pt-2 pb-6 space-x-2 text-lg text-violet-400">
+              <button onClick={toggleModal} className="inline-flex items-center p-2 space-x-2 text-lg btn btn-outline text-violet-400">
                 <span>Request</span>
               </button>
             </div>
@@ -166,10 +164,10 @@ const FoodDetails = () => {
                   </div>
                 </div>
                 <div className="mt-6">
-                  <button type="submit" className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
+                  <button type="submit" className="ml-3 px-4 py-2 text-sm font-medium text-lg btn btn-outline text-violet-400">
                     Request
                   </button>
-                  <button onClick={toggleModal} className="ml-3 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
+                  <button onClick={toggleModal} className="ml-3 px-4 py-2 text-sm font-medium text-lg btn btn-outline text-violet-400">
                     Cancel
                   </button>
                 </div>
