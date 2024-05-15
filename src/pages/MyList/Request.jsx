@@ -28,7 +28,8 @@ const Request = () => {
     <title>  H-food  | My Request list</title>
   </Helmet>
       <div className="overflow-x-auto">
-        <div className="flex justify-center"><div className="w-28 "> <Lottie animationData={r2} /></div> <h1 className="text-xl font-bold">Requested Food</h1></div>
+        <div className="text-center"> <h1 className="text-xl font-bold">Requested Food</h1></div>
+        <div  className="w-28  max-w-5xl mx-auto mb-8"> <Lottie animationData={r2} /></div>
         
 
       {

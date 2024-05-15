@@ -43,7 +43,7 @@ const FeatureFood = ({ cards }) => {
       <div className="flex "> <div className="p-2"><CiLocationOn /> </div><span className="text-teal-800 text-xs uppercase font-semibold tracking-wide mt-2"> {truncateString(location, 2)} </span></div>
     </div>
     <h4 className="mt-2 font-semibold text-lg leading-tight truncate">
-      {truncateString(food_name, 4)}
+  {truncateString(food_name, 4)} <span className="text-xs bg-lime-600  rounded-full text-white badge">{status}</span>
     </h4>
     <div className="mt-2">
       <span>  {truncateString(short_description, 11)}   </span>

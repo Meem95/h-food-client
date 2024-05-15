@@ -4,7 +4,8 @@ import Mylist from "./Mylist";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-
+import r2 from "../../assets/images/req.json";
+import Lottie from "lottie-react";
 
 const MyLists = () => {
    
@@ -27,6 +28,8 @@ const MyLists = () => {
     <title>  H-food  | My list</title>
   </Helmet>
       <div className="overflow-x-auto">
+      <div className="text-center"> <h1 className="text-xl font-bold"> Doanted Food</h1></div>
+        <div  className="w-28  max-w-5xl mx-auto mb-8"> <Lottie animationData={r2} /></div>
       {
         !user? <p>no data found</p>
         :
