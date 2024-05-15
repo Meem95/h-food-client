@@ -71,13 +71,13 @@ const FoodDetails = () => {
         });
       });
   };
-
+  const isCurrentUser = user.email === email;
   return (
     <div className="min-h-screen max-w-7xl mx-auto text-black my-10">
       <Helmet>
         <title>H-food | {food_name}</title>
       </Helmet>
-      <div className="text-black bg-[#FFFFE0] shadow-2xl">
+      <div className="text-black bg-gray-100 shadow-2xl">
         <div className="container grid grid-cols-12 mx-auto">
           {/* Left Section */}
           <div className="bg-no-repeat bg-cover col-span-full lg:col-span-6" style={{ backgroundImage: `url(${image})`, backgroundPosition: "center center", backgroundSize: "cover" }}></div>
@@ -96,7 +96,11 @@ const FoodDetails = () => {
               <span className="text-lg bg-lime-500 p-2 rounded-xl text-white">{status}</span>
             </div>
             <div className="text-center mt-6">
-              <button onClick={toggleModal} className="inline-flex items-center p-2 space-x-2 text-lg btn btn-outline text-violet-400">
+            <button
+                onClick={toggleModal}
+                disabled={isCurrentUser} // Disable the button if it's the current user
+                className={`inline-flex items-center p-2 space-x-2 text-lg btn btn-outline text-violet-400 ${isCurrentUser ? 'cursor-not-allowed opacity-50' : ''}`}
+              >
                 <span>Request</span>
               </button>
             </div>
@@ -105,76 +109,117 @@ const FoodDetails = () => {
       </div>
       {/* Request Modal */}
       {isOpen && (
-        <div className="fixed inset-0 z-10 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-          <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            <div className="relative inline-block p-4 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl sm:max-w-3xl rounded-xl dark:bg-gray-900 sm:my-8 sm:w-full sm:p-6">
-              <h3 className="text-lg font-medium text-gray-800 dark:text-white" id="modal-title">
-                Request Food
-              </h3>
-              <form onSubmit={handleRequest}>
-                <div className="mt-5 text-left">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Name</label>
-                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{food_name}</p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Image</label>
-                      <img className="mt-1 rounded-lg" src={image} alt="Food" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food ID</label>
-                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{updateMyLocation.id}</p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Donator Email</label>
-                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{email}</p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Donator Name</label>
-                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{name}</p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">User Email</label>
-                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{updateMyLocation.user_email}</p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Request Date</label>
-                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{new Date().toLocaleString()}</p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Pickup Location</label>
-                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{location}</p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Expire Date</label>
-                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{date}</p>
-                    </div>
-                    <div className="col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Additional Notes</label>
-                      <textarea
-                        //value={additionalNotes}
-                        defaultValue={short_description}
-                        onChange={(e) => setAdditionalNotes(e.target.value)}
-                        className="w-full mt-1 rounded-md focus:outline-[#84CC16] text-black border p-3"
-                        placeholder="Enter additional notes..."
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-6">
-                  <button type="submit" className="ml-3 px-4 py-2 text-sm font-medium text-lg btn btn-outline text-violet-400">
-                    Request
-                  </button>
-                  <button onClick={toggleModal} className="ml-3 px-4 py-2 text-sm font-medium text-lg btn btn-outline text-violet-400">
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+       <div className="fixed inset-0 z-10 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+       <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+         <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+         <div className="relative inline-block p-4 overflow-hidden text-left align-middle transition-all transform bg-gray-100 shadow-xl sm:max-w-3xl rounded-xl dark:bg-gray-900 sm:my-8 sm:w-full sm:p-6">
+           <h3 className="text-lg font-medium text-center my-3 text-gray-800 dark:text-white" id="modal-title">
+             Request Food
+           </h3>
+           <form onSubmit={handleRequest}>
+             <div className="mt-5 text-left">
+               <div className="grid grid-cols-2 gap-4">
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Name</label>
+                   <input
+                     type="text"
+                     className="mt-1 text-sm text-gray-600 dark:text-gray-400 bg-gray-200 p-2 rounded-lg"
+                     value={food_name}
+                     disabled
+                   />
+                 </div>
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Image</label>
+                   <img className="mt-1 rounded-lg" src={image} alt="Food" />
+                 </div>
+                
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food ID</label>
+                   <input
+                     type="text"
+                     className="mt-1 text-sm text-gray-600 dark:text-gray-400 bg-gray-200 p-2 rounded-lg"
+                     value={_id}
+                     disabled
+                   />
+                 </div>
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Donator Name</label>
+                   <input
+                     type="text"
+                     className="mt-1 text-sm text-gray-600 dark:text-gray-400 bg-gray-200 p-2 rounded-lg"
+                     value={name}
+                     disabled
+                   />
+                 </div>
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Donator Email</label>
+                   <input
+                     type="text"
+                     className="mt-1 text-sm text-gray-600 dark:text-gray-400 bg-gray-200 p-2 rounded-lg"
+                     value={email}
+                     disabled
+                   />
+                 </div>
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">User Email</label>
+                   <input
+                     type="text"
+                     className="mt-1 text-sm text-gray-600 dark:text-gray-400 bg-gray-200 p-2 rounded-lg"
+                     value={user.email}
+                     disabled
+                   />
+                 </div>
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Request Date</label>
+                   <input
+                     type="text"
+                     className="mt-1 text-sm text-gray-600 dark:text-gray-400 bg-gray-200 p-2 rounded-lg"
+                     value={new Date().toLocaleString()}
+                     disabled
+                   />
+                 </div>
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Pickup Location</label>
+                   <input
+                     type="text"
+                     className="mt-1 text-sm text-gray-600 dark:text-gray-400 bg-gray-200 p-2 rounded-lg"
+                     value={location}
+                     disabled
+                   />
+                 </div>
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Expire Date</label>
+                   <input
+                     type="text"
+                     className="mt-1 text-sm text-gray-600 dark:text-gray-400 bg-gray-200 p-2 rounded-lg"
+                     value={date}
+                     disabled
+                   />
+                 </div>
+                 <div className="col-span-2">
+                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Additional Notes</label>
+                   <textarea
+                     value={short_description}
+                     onChange={(e) => setAdditionalNotes(e.target.value)}
+                     className="w-full mt-1 rounded-md focus:outline-[#84CC16] text-black border p-3"
+                     placeholder="Enter additional notes..."
+                   ></textarea>
+                 </div>
+               </div>
+             </div>
+             <div className="mt-6">
+               <button type="submit" className="ml-3 px-4 py-2 text-sm font-medium text-lg btn btn-outline text-violet-400">
+                 Request
+               </button>
+               <button onClick={toggleModal} className="ml-3 px-4 py-2 text-sm font-medium text-lg btn btn-outline text-violet-400">
+                 Cancel
+               </button>
+             </div>
+           </form>
+         </div>
+       </div>
+     </div>
+     
       )}
     </div>
   );
