@@ -93,7 +93,7 @@ const Register = () => {
   return (
     <div>
      <Helmet>
-        <title> Travel Trek | Registrations</title>
+        <title>  H-food | Registrations</title>
       </Helmet>
       <div className="my-8">
       <h1 className="text-4xl font-bold text-center">Registrations</h1></div>

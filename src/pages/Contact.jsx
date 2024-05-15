@@ -17,7 +17,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen  mx-auto mt-16">
     <Helmet>
-   <title> Travel Trek | Contact Us</title>
+   <title>  H-food | Contact Us</title>
    </Helmet>
       <div className="px-8 py-2  ">
         <div className="py-2 font-bold text-center text-4xl animate__animated animate__bounce">

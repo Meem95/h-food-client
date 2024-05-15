@@ -274,9 +274,9 @@ const Navbar = () => {
             {showDropdownRight && (
               <div className="absolute z-10 -left-[120px] bg-white p-5 border-gray-600 shadow-xl rounded-lg">
                 <ul>
-                <li className="border-b-2  border-red-200"><NavLink to="/profile" className=" text-[#2f400e] mt-4">
+                <li className="border-b-2  border-red-200">
                   {user?.displayName || "User" }
-                </NavLink></li>
+                </li>
                 <li > <button onClick={handleSignOut} className="btn bg-lime-600  text-white mt-2">
                   Logout
                 </button></li>
