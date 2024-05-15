@@ -40,7 +40,7 @@ const Review = () => {
                         “ The food at H-Food exceeded my expectations! Every dish was bursting with flavor, and the presentation was impeccable. I particularly enjoyed the freshness of the ingredients and the attention to detail in every bite. It was truly a memorable dining experience that I can't wait to repeat. ”
                       </p>
 
-                      <h3 className="mt-6 text-lg font-medium text-blue-500">
+                      <h3 className="mt-6 text-lg font-medium text-lime-600">
                       Sarah Johnson
                       </h3>
                       <p className="text-gray-600 dark:text-gray-300">
@@ -73,7 +73,7 @@ const Review = () => {
  
                       </p>
 
-                      <h3 className="mt-6 text-lg font-medium text-blue-500">
+                      <h3 className="mt-6 text-lg font-medium text-lime-600">
                       Michael Lee
                       </h3>
                       <p className="text-gray-600 dark:text-gray-300">
@@ -105,7 +105,7 @@ const Review = () => {
                         “ H-Food truly impressed me with their culinary skills. The food was a delightful blend of flavors and textures that left me craving for more. The attention to detail in every dish was evident, and it's clear that the chefs put their heart and soul into their creations. I highly recommend H-Food to anyone looking for a culinary delight that tantalizes the taste buds. ”
                       </p>
 
-                      <h3 className="mt-6 text-lg font-medium text-blue-500">
+                      <h3 className="mt-6 text-lg font-medium text-lime-600">
                       Emily Thompson
                       </h3>
                       <p className="text-gray-600 dark:text-gray-300">

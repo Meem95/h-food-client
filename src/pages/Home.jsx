@@ -10,6 +10,7 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 import axios from "axios";
+import Blog from "./Home/Blog";
 
 
 const Home = () => {
@@ -69,6 +70,11 @@ const Home = () => {
       <Fade direction="left" duration="2000">
         <div>
           <Gallery />
+        </div>
+      </Fade>
+      <Fade direction="left" duration="2000">
+        <div>
+         <Blog></Blog>
         </div>
       </Fade>
       <Fade direction="left" duration="2000">

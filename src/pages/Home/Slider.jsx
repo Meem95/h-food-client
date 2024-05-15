@@ -30,40 +30,34 @@ const Slider = () => {
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
         className="mySwiper"
       >
-        <SwiperSlide>  <div className="bg-[url('https://i.ibb.co/0tjqW90/c-HJpdm-F0-ZS9sci9pb-WFn-ZXMvd2-Vic2l0-ZS8y-MDIz-LTA5-L3-Jhd3-Bpe-GVs-X29m-Zmlj-ZV8y-M190a-GVfc-Gljd.jpg')] min-h-screen bg-cover bg-no-repeat flex items-center justify-center">
-            <h1 className=" text-white md:text-6xl text-4xl text-center font-nunito max-w-screen-xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
-            Food is symbolic of love when words are inadequate.
+        <SwiperSlide>  <div className="bg-[url('https://i.ibb.co/ysBXTvt/b29ec054-adami3-school-children-in-pakistan-sitting-down-to-eat-their-lu-60f45fa7-3231-49a0-b78f-3b9.jpg')] min-h-screen bg-cover bg-no-repeat flex items-center justify-center">
+            <h1 className=" text-white md:text-3xl text-3xl text-center font-nunito max-w-screen-xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
+            Empowering Communities: Join Our Food Sharing Network!
             </h1>
           </div>
           </SwiperSlide>
           <SwiperSlide>
-          <div className="bg-[url('https://i.ibb.co/0tjqW90/c-HJpdm-F0-ZS9sci9pb-WFn-ZXMvd2-Vic2l0-ZS8y-MDIz-LTA5-L3-Jhd3-Bpe-GVs-X29m-Zmlj-ZV8y-M190a-GVfc-Gljd.jpg')] min-h-screen bg-cover bg-no-repeat flex items-center justify-center">
-            <h1 className=" text-white md:text-6xl text-4xl text-center font-nunito max-w-screen-xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
-            Food is symbolic of love when words are inadequate.
+          <div className="bg-[url('https://i.ibb.co/ynMzDBm/charity-prepper-scaled.jpg')] min-h-screen bg-cover bg-no-repeat flex items-center justify-center">
+            <h1 className=" text-black md:text-3xl text-3xl text-center font-nunito max-w-screen-xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
+            Together for Change: Food Sharing Revolutionized!
             </h1>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="bg-[url('https://i.ibb.co/kKdh8X9/best-biryani-in-pune-lead.jpg')] min-h-screen bg-cover bg-no-repeat flex items-center justify-center">
-            <h1 className=" text-white md:text-6xl text-4xl text-center font-nunito max-w-screen-xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
-            Food is our common ground, a universal experience
+          <div className="bg-[url('https://i.ibb.co/ypDgHJS/Donate-Money-For-Food-In-India-To-Special-Charity-Programs.png')] min-h-screen bg-cover bg-no-repeat flex items-center justify-center">
+            <h1 className=" text-white md:text-3xl text-3xl text-center font-nunito max-w-screen-xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
+            From Waste to Wonder: Explore Our Surplus Reduction Platform!
             </h1>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="bg-[url('https://i.ibb.co/dgj138F/pexels-catscoming-1907228-2.jpg')] min-h-screen bg-cover bg-no-repeat flex items-center justify-center">
-            <h1 className=" text-white md:text-6xl text-4xl text-center font-nunito max-w-screen-xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
-            Food is maybe the only universal thing that really has the power to bring everyone together.
+          <div className="bg-[url('https://i.ibb.co/F4MCY1S/1000-F-345226922-d6-JXx-Ypfu3-BMDi-Lo-NH468-Vp-UXehs1n-RU.jpg')] min-h-screen bg-cover bg-no-repeat flex items-center justify-center">
+            <h1 className=" text-black md:text-3xl text-3xl text-center font-nunito max-w-screen-xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
+            Ending Hunger: Our Mission with Food Sharing and Surplus Reduction
             </h1>
           </div>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="bg-[url('https://i.ibb.co/qC7b2Bs/pexels-chanwalrus-958546.jpg')] min-h-screen bg-cover bg-no-repeat flex items-center justify-center">
-            <h1 className=" text-white md:text-6xl text-4xl text-center font-nunito max-w-screen-xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
-            One cannot think well, love well, sleep well, if one has not dined well.
-            </h1>
-          </div>
-        </SwiperSlide>
+       
       </Swiper>
  
     </div>
