@@ -33,7 +33,7 @@ const Register = () => {
         icon: 'error',
         confirmButtonText: 'Cool'
       })
-        // alert('Password must have at least one uppercase letter, one lowercase letter, and be at least 6 characters long.');
+        
          return;
      }
      

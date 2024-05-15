@@ -79,9 +79,9 @@ const FoodDetails = () => {
       </Helmet>
       <div className="text-black bg-gray-100 shadow-2xl">
         <div className="container grid grid-cols-12 mx-auto">
-          {/* Left Section */}
+         
           <div className="bg-no-repeat bg-cover col-span-full lg:col-span-6" style={{ backgroundImage: `url(${image})`, backgroundPosition: "center center", backgroundSize: "cover" }}></div>
-          {/* Right Section */}
+         
           <div className="flex flex-col p-6 col-span-full row-span-full lg:col-span-6 lg:p-10">
             <h1 className="text-3xl font-semibold">{food_name}</h1>
             <p className="flex-1 pt-2"><span className="text-teal-800 text-xs uppercase font-semibold tracking-wide mt-2"> Quantity: </span> {quantity} / Person</p>
@@ -98,7 +98,7 @@ const FoodDetails = () => {
             <div className="text-center mt-6">
             <button
                 onClick={toggleModal}
-                disabled={isCurrentUser} // Disable the button if it's the current user
+                disabled={isCurrentUser} 
                 className={`inline-flex items-center p-2 space-x-2 text-lg btn btn-outline text-violet-400 ${isCurrentUser ? 'cursor-not-allowed opacity-50' : ''}`}
               >
                 <span>Request</span>
@@ -118,7 +118,7 @@ const FoodDetails = () => {
            </h3>
            <form onSubmit={handleRequest}>
              <div className="mt-5 text-left">
-               <div className="grid grid-cols-2 gap-4">
+               <div className="grid grid-cols-2 gap-5">
                  <div>
                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Food Name</label>
                    <input

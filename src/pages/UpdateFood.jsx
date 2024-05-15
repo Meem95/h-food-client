@@ -48,7 +48,7 @@ const UpdateFood = () => {
         if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",
-            text: "Location Updated Successfully",
+            text: "Food Updated Successfully",
             icon: "success",
             confirmButtonText: "Cool",
           });
